@@ -24,22 +24,18 @@
 
 (def labeled-images (assign-labels data))
 
-;;
-;; HTTP Functions
-;;
-
-;;
-;; UI Functions
-;;
-
 (defn do-mod
-  "Applies f to counter, and mods the resuling integer by the modulo"
+  "Applies f to counter with modulo"
   [f counter modulo]
   (let [mod-f #(mod (f %) modulo)]
     (swap! counter mod-f)))
 
 (def mod-inc (partial do-mod inc))
 (def mod-dec (partial do-mod dec))
+
+;;
+;; UI Functions
+;;
 
 
 (defn slide-class 

@@ -11,6 +11,14 @@
   		[:ul 
   			[:li "B.S. Computer Science, University of Arizona"]
   			[:li "B.A. English, University of Arizona"]]
+      [:video.rounded-video {:autoPlay "true"
+                             :loop "true"
+                             :width 688 
+                             :height 387 
+                             :title "ClojureScript programming"
+                             :name "ClojureScript programming"}
+       [:source {:src "/video/coding.mov"
+                 :type "video/mp4"}]]
   		[:h4 "Links"]
   		[:ul 
   			[:li [:a {:href git} "Github" ]]
