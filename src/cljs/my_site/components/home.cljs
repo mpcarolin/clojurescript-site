@@ -15,4 +15,4 @@
   		[:ul 
   			[:li [:a {:href git} "Github" ]]
   			[:li [:a {:href linkedin} "LinkedIn"]]]
-      (carousel)])
+      [carousel]])

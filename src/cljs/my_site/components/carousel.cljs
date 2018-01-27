@@ -32,28 +32,19 @@
             :caption "Single Page Application built in Reagent, 
                       a ClojureScript wrapper around ReactJS."}])
 
-(def images-with-labels (assign-labels data))
-
-(def current-slide (r/atom 1))
-
-(defn next-slide [] 
-  (swap! current-slide inc))
-(defn prev-slide [] 
-  (swap! current-slide (pos-dec @current-slide)))
+(def labeled-images (assign-labels data))
 
 ;; UI
-(defn active? [idx] (= idx @current-slide))
-
 (defn slide-class 
-  [idx]
-    (if (active? idx)
+  [idx counter]
+    (if (= idx counter)
       "mySlides fade active active-slide" 
       "mySlides fade inactive-slide"))
   
 (defn- slide
   "Generates individual slide html component for a carousel."
-  [{:keys [idx path label caption]}]
-  (let [cls (slide-class idx)]
+  [counter {:keys [idx path label caption]}]
+  (let [cls (slide-class idx counter)]
     ^{:key idx}
     [:div {:class cls} 
       [:div {:class "numbertext"} label]
@@ -61,16 +52,32 @@
              :style {:width "100%"}}]
       [:div {:class "text"} caption]]))
 
-(def slides (map slide images-with-labels))
+;(def slides (map slide images-with-labels))
+(defn bound-inc 
+  [counter]
+  (let [len (count labeled-images)
+        max? (= @counter (dec len))]
+    (when (not max?)
+      (swap! counter inc))))
+
+(defn bound-dec
+  [counter]
+  (let [min? (= @counter 0)]
+    (when (not min?)
+      (swap! counter dec))))
 
 (defn carousel []
-  [:div 
-    [:div {:class "slideshow-container"}
-      (doall (for [slide slides] slide))
-      [:a {:class "prev chevron left" 
-           :on-click prev-slide}]
-      [:a {:class "next chevron right" 
-           :on-click next-slide}]]])
+  (let [counter (r/atom 0)]
+    (add-watch counter :key (fn [k atm old new] (println @atm)))
+    (fn []
+      [:div 
+        [:div {:class "slideshow-container"}
+          (doall (for [image labeled-images] 
+            (slide @counter image)))
+          [:a {:class "prev chevron left" 
+               :on-click #(bound-dec counter)}]
+          [:a {:class "next chevron right" 
+               :on-click #(bound-inc counter)}]]])))
 
 
 
