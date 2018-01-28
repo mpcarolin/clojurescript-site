@@ -11,5 +11,6 @@
   [:div.nav-container
     [:ul.nav-list
       [:li.nav-item.one (link "Home" "/")]
-      [:li.nav-item.two (link "About" "/about")]
+      [:li.nav-item.two (link "Blog" "/blog")]
+      [:li.nav-item.three (link "About" "/about")]
       [:hr.nav-underline]]])

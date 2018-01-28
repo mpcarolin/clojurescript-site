@@ -10,6 +10,11 @@
 ;; Routes
 
 (defonce page (atom #'home-page))
+(defonce route (atom "/"))
+(defn update-page!
+  [page route]
+  (reset! page page)
+  (reset! route route))
 
 (defn current-page []
   [:div.root-div
