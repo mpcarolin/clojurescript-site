@@ -3,6 +3,7 @@
               [secretary.core :as secretary :include-macros true]
               [my-site.components.home :refer [home-page]]
               [my-site.components.about :refer [about-page]]
+              [my-site.components.navigation :refer [nav-bar]] 
               [accountant.core :as accountant]))
 
 ;; -------------------------
@@ -11,7 +12,9 @@
 (defonce page (atom #'home-page))
 
 (defn current-page []
-  [:div [@page]])
+  [:div.root-div
+   [nav-bar]
+   [@page]])
 
 (secretary/defroute "/" []
   (reset! page #'home-page))

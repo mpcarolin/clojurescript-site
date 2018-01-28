@@ -6,9 +6,11 @@
 ;;
 
 (def data [{:path "/images/flex.png" 
+            :uri "https://github.com/mpcarolin/PokeFlex"
             :caption "Auto-caching and easy JSON transformation 
                       of API endpoints in Python"}
            {:path "/images/site.png"
+            :uri "https://github.com/mpcarolin/clojurescript-site"
             :caption "Single Page Application built in Reagent, 
                       a ClojureScript wrapper around ReactJS."}])
 
@@ -50,14 +52,14 @@
   
 (defn- slide
   "Generates individual slide html component for a carousel."
-  [{:keys [idx path label caption]}
-   counter]
+  [{:keys [idx path uri label caption]} counter]
   (let [cls (slide-class idx counter)]
     ^{:key idx}
     [:div {:class cls} 
       [:div {:class "numbertext"} label]
-      [:img {:src path 
-             :style {:width "100%"}}]
+      [:a {:href uri}
+        [:img {:src path 
+               :style {:width "100%"}}]]
       [:div {:class "text"} [:strong caption]]]))
 
 
