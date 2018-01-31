@@ -1,16 +1,31 @@
 (ns my-site.components.navigation)
+;;
+;; Data
+;;
 
+(def routes [{:path "/"      :title "Home"  :id "one"}
+             {:path "/blog"  :title "Blog"  :id "two"}
+             {:path "/about" :title "About" :id "three"}])
 ;;
 ;; UI
 ;;
 
-(defn link [title link] 
+(defn link [title link]
     [:a.nav-link {:href link} title])
 
-(defn nav-bar []
+(defn nav-li
+  "Generates the li element of the given index for the navigation bar"
+  [{:keys [title path id]} current-path]
+  (let [current? (= path current-path)
+        cls      (str "nav-item " (when current? "current ") id)]
+    ^{:key id}
+    [:li {:class cls} (link title path)]))
+
+(defn nav-bar 
+  "Generates the nav-bar element. Use the path argument to specify
+  which nav bar element is the active page, to be highlighted"
+  [path]
   [:div.nav-container
     [:ul.nav-list
-      [:li.nav-item.one (link "Home" "/")]
-      [:li.nav-item.two (link "Blog" "/blog")]
-      [:li.nav-item.three (link "About" "/about")]
+      (for [route routes] (nav-li route path))
       [:hr.nav-underline]]])

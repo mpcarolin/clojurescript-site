@@ -11,21 +11,22 @@
 
 (defonce page (atom #'home-page))
 (defonce route (atom "/"))
+
 (defn update-page!
-  [page route]
-  (reset! page page)
-  (reset! route route))
+  [next-page next-route]
+  (reset! page next-page)
+  (reset! route next-route))
 
 (defn current-page []
   [:div.root-div
-   [nav-bar]
+   [nav-bar @route]
    [@page]])
 
 (secretary/defroute "/" []
-  (reset! page #'home-page))
+  (update-page! #'home-page "/"))
 
 (secretary/defroute "/about" []
-  (reset! page #'about-page))
+  (update-page! #'about-page "/about"))
 
 ;; -------------------------
 ;; Initialize app
