@@ -8,8 +8,10 @@
 (defn home-page []
   [:div
     [:div.center-column
-      [:h1 title]
-      [:h4 "Software Engineer"]
+      [:h1.center-text title]
+      [:h3.center-text "Software Engineer"]
+      [:img.portrait {:src "/images/portrait.jpg"}]
+      [:h4 "Education"]
       [:ul 
         [:li "B.S. Computer Science, University of Arizona"]
         [:li "B.A. English, University of Arizona"]]
@@ -27,3 +29,4 @@
         [:li [:a {:href linkedin} "LinkedIn"]]]
       [:h4 "Projects"]
       [carousel]]])
+
