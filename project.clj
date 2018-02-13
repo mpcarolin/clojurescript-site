@@ -1,10 +1,11 @@
 (defproject my-site "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Personal website and blog for Michael Carolin"
+  :url "https://github.com/mpcarolin/clojurescript-site"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.9.0"]
+                 ;;[markdown-to-hiccup "0.2.3"]
                  [cljs-ajax "0.7.3"]
                  [ring-server "0.5.0"]
                  [reagent "0.7.0"]
@@ -12,6 +13,7 @@
                  [ring "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
+                 [cljsjs/react-bootstrap "0.31.5-0"]
                  [hiccup "1.0.5"]
                  [yogthos/config "1.1"]
                  [org.clojure/clojurescript "1.9.946"
@@ -67,21 +69,21 @@
               :output-dir "target/cljsbuild/public/js/out"
               :source-map true
               :optimizations :none
-              :pretty-print  true}}
+              :pretty-print  true}}}}
 
 
 
-            }
-   }
+
+
 
   :figwheel
-  {:http-server-root "public"
-   :server-port 3449
-   :nrepl-port 7002
-   :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
-                      ]
-   :css-dirs ["resources/public/css"]
-   :ring-handler my-site.handler/app}
+    {:http-server-root "public"
+     :server-port 8585
+     :nrepl-port 7002
+     :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"]
+
+     :css-dirs ["resources/public/css"]
+     :ring-handler my-site.handler/app}
 
 
 
@@ -95,13 +97,13 @@
                                   [figwheel-sidecar "0.5.14"]
                                   [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [pjstadig/humane-test-output "0.8.3"]
+                                  [pjstadig/humane-test-output "0.8.3"]]
                                   
- ]
+
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.5.14"]
-]
+                   :plugins [[lein-figwheel "0.5.14"]]
+
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]

@@ -3,9 +3,9 @@
 ;; Data
 ;;
 
-(def routes [{:path "/"      :title "Home"  :id "one"}
-             {:path "/blog"  :title "Blog"  :id "two"}
-             {:path "/about" :title "About" :id "three"}])
+(def routes [{:path "/"      :title "home"  :id "one"}
+             {:path "/blog"  :title "blog"  :id "two"}
+             {:path "/about" :title "about" :id "three"}])
 ;;
 ;; UI
 ;;
@@ -23,9 +23,8 @@
 
 (defn nav-bar 
   "Generates the nav-bar element. Use the path argument to specify
-  which nav bar element is the active page, to be highlighted"
+   which nav bar element is the active page, to be highlighted"
   [path]
   [:div.nav-container
     [:ul.nav-list
-      (for [route routes] (nav-li route path))
-      [:hr.nav-underline]]])
+      (for [route routes] (nav-li route path))]])

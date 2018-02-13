@@ -3,6 +3,7 @@
               [secretary.core :as secretary :include-macros true]
               [my-site.components.home :refer [home-page]]
               [my-site.components.about :refer [about-page]]
+              [my-site.components.blog :refer [blog-page]]
               [my-site.components.navigation :refer [nav-bar]] 
               [accountant.core :as accountant]))
 
@@ -27,6 +28,9 @@
 
 (secretary/defroute "/about" []
   (update-page! #'about-page "/about"))
+
+(secretary/defroute "/blog" []
+  (update-page! #'blog-page "/blog"))
 
 ;; -------------------------
 ;; Initialize app
