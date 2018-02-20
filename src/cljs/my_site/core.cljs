@@ -4,7 +4,8 @@
               [my-site.components.home :refer [home-page]]
               [my-site.components.about :refer [about-page]]
               [my-site.components.blog :refer [blog-page]]
-              [my-site.components.navigation :refer [nav-bar]] 
+              [my-site.components.navigation :refer [nav-bar]]
+              [markdown-to-hiccup.core :as m]
               [accountant.core :as accountant]))
 
 ;; -------------------------

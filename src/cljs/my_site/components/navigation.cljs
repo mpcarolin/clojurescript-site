@@ -5,6 +5,7 @@
 
 (def routes [{:path "/"      :title "home"  :id "one"}
              {:path "/blog"  :title "blog"  :id "two"}
+             {:path "/work"  :title "work"  :id "four"}
              {:path "/about" :title "about" :id "three"}])
 ;;
 ;; UI

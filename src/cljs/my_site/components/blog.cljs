@@ -8,9 +8,11 @@
 (defn get-date [] (->> (js/Date.)
                        (.toDateString)))
 
+(def date (get-date))
+
 (defonce posts [{:title "Functional Programming is Practical"
-                 :date (get-date)
-                 :body [:p "In my opinion..."]}])
+                 :body [:p "In my opinion..."]
+                 :date date}])
 
 ;;
 ;; Bootstrap bindings
@@ -19,11 +21,20 @@
 (defonce Row (b/get-bootstrap "Row"))
 (defonce Col (b/get-bootstrap "Col"))
 
-(defn side-bar []
-  [:div
-   [:p "This is a sidebar"]])
+(comment
+  (defn side-link
+    [{:keys [link title]}]
+    ^{:key link}
+    [:div
+      [:a.sidebar-text {:href link} title]])
 
-(defn content 
+  (defn side-bar []
+    [:div.sidebar
+     [:p.sidebar-title "History"]
+     (for [link links]
+       (side-link link))]))
+
+(defn content
   [{:keys [title date body]}]
   [:div
     [:h2 title]
@@ -32,12 +43,10 @@
     body])
 
 (defn blog-page
-  []
-  [:div.blog-container
-   [Grid
-    [Row {:class-name "show-grid"}
-     [Col {:md 9}
-      (content (posts 0))]
-     [Col {:md 3}
-      (side-bar)]]]])
-        
+  [] ;; todo: pass a post into here
+  [:div.center-column
+   [:a {:href "/archive"
+        :style {:font-size "0.75em"}}
+    "archive"]
+   (content (posts 0))])
+

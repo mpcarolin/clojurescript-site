@@ -1,8 +1,8 @@
 (ns my-site.components.about)
 
-(defonce link [:a {:href "https://clojure.org/"
-               :target "_blank"} 
-           "Clojure"])
+(defn get-link
+  [title uri]
+  [:a {:href uri :target "_blank"} title])
 
 (defonce git "https://github.com/mpcarolin")
 (defonce linkedin "https://www.linkedin.com/in/mpcarolin/")
@@ -25,7 +25,7 @@
        [:h4.spacer "•"]
        [:h4.right-link [:a {:href linkedin} "LinkedIn"]]]]
    [:br]
-   [bio link]
+   [bio (get-link "Clojure" "https://clojure.org/")]
    [:div.about-right
      [:h4 "Education"]
      [:ul
