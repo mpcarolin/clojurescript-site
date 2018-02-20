@@ -1,6 +1,5 @@
 (ns my-site.components.blog
-  (:require [reagent.core :as r]
-            [my-site.services.bootstrap :as b]))
+  (:require [reagent.core :as r]))
 
 ;;
 ;; Data 
@@ -13,13 +12,6 @@
 (defonce posts [{:title "Functional Programming is Practical"
                  :body [:p "In my opinion..."]
                  :date date}])
-
-;;
-;; Bootstrap bindings
-;;
-(defonce Grid (b/get-bootstrap "Grid"))
-(defonce Row (b/get-bootstrap "Row"))
-(defonce Col (b/get-bootstrap "Col"))
 
 (comment
   (defn side-link
@@ -43,10 +35,10 @@
     body])
 
 (defn blog-page
-  [] ;; todo: pass a post into here
+  [post]
   [:div.center-column
    [:a {:href "/archive"
         :style {:font-size "0.75em"}}
     "archive"]
-   (content (posts 0))])
+   (content post)])
 
