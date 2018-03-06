@@ -29,7 +29,7 @@
 
 (defroutes routes
   (GET "/" [] (loading-page))
-  (GET "/blog" [] (loading-page))
+  (GET "/blog/:title" [title] (loading-page))
   (GET "/work" [] (loading-page))
   (GET "/about" [] (loading-page))
   (resources "/")

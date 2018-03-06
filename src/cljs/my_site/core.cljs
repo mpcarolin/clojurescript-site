@@ -31,13 +31,10 @@
   (update-page! #'about-page "/about"))
 
 (secretary/defroute "/blog" []
-  (update-page! #'blog-page "/blog"))
+  (update-page! #'blog-page "/blog/latest"))
 
-(secretary/defroute "/blog/:title"
-  [title]
-                    (println title)
-  (def my-page (blog-page title))
-  (update-page! my-page (str "/blog" title)))
+(secretary/defroute "/blog/:title" [title]
+  (update-page! #'blog-page (str "/blog" title)))
 ;; -------------------------
 ;; Initialize app
 
